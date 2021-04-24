@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.box {
+  margin: 15px;
+}
+
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.grid > div {
+  flex-basis: calc(30% - 40px);
+}
