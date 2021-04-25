@@ -51,3 +51,14 @@
 .grid > div {
   flex-basis: calc(30% - 40px);
 }
+
+.searchbar  {
+  min-height: 100%;
+  margin: 15px;
+}
+
+.changeButton  {
+  float: right;
+  margin-left: -50%;
+  margin-top: 2em;
+}

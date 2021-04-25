@@ -3,9 +3,9 @@ import './App.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Alert, Card, Form, Grid, Row, Col, Container, CardGroup, ListGroup, ButtonGroup } from 'react-bootstrap'
+import { Button, Alert, Image, Card, Form, ToggleButtonGroup, Grid, Row, Col, Container, CardGroup, ListGroup, ButtonGroup, Navbar, InputGroup, FormControl, ToggleButton } from 'react-bootstrap'
 import GridList from '@material-ui/core/GridList';
-
+import lebron from './assets/lebron-james.jpg';
 //onchanged search func
 //onchanged pagination func
 //grid 
@@ -19,6 +19,7 @@ function App() {
   const [data, setData] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
   const [isList, setList] = useState(false)
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,14 +59,23 @@ function App() {
     return (
 
       <Card style={{ width: '18rem' }} key={index} className="box">
-        <Card.Img />
+        <Image style={{ margin: '15px', alignSelf: 'center', width: '25%' }} src={lebron} roundedCircle />
         <Card.Body>
           <Card.Title>
           </Card.Title>
+
           <Card.Text style={{ color: '#000' }}>
-            {card.first_name}  {card.last_name}
+            Name : {card.first_name}  {card.last_name}
           </Card.Text>
-          <Button variant="primary">Read More</Button>
+          <Card.Text style={{ color: '#000' }}>
+            Height : {card.height_feet}'  {card.height_inches}"
+          </Card.Text>
+          <Card.Text style={{ color: '#000' }}>
+            Position : {card.position}
+          </Card.Text>  
+          <Card.Text style={{ color: '#000' }}>
+            Team : {card.team.name}
+          </Card.Text>
         </Card.Body>
       </Card>
     )
@@ -74,7 +84,7 @@ function App() {
   const renderList = (list, index) => {
     return (
 
-      <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
+      <ListGroup.Item disabled>{list.first_name}  {list.last_name}</ListGroup.Item>
     )
   }
 
@@ -84,20 +94,33 @@ function App() {
 
   return (
     <div>
-      <tr>
-        <input type="text" placeholder="Search.." onChange={searchChange} />
-        <Button variant="outline-primary" onClick={setList(false)}>grid</Button>{' '}
-        <Button variant="outline-secondary" onClick={setList(true)}>list</Button>{' '}
-      </tr>
 
+      <Navbar className="bg-light justify-content-between">
+        <Form inline>
+          <InputGroup>
+            <FormControl onChange={searchChange} type="text" placeholder="Search" className=" mr-sm-2" />
+          </InputGroup>
+        </Form>
+        <ToggleButtonGroup type="radio" name="options" defaultValue={2}>
+          <ToggleButton onClick={() => setList(true)} value={1}>list</ToggleButton>
+          <ToggleButton onClick={() => setList(false)} value={2}>grid</ToggleButton>
+
+        </ToggleButtonGroup>
+      </Navbar>
 
       <div className="grid">
 
-        {isLoading && isList ? <div>Loading...</div> : data.data && data.data.map(renderCard
+        {isList ? <div></div> : data.data && data.data.map(renderCard
 
         )}
 
       </div>
+
+      <ListGroup>
+        {!isList ? <div></div> : data.data && data.data.map(renderList
+
+        )}
+      </ListGroup>
 
 
     </div>
