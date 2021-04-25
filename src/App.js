@@ -10,13 +10,16 @@ import lebron from './assets/lebron-james.jpg';
 
 
 function App() {
+  /*state for keeping track of loading */
   const [isLoading, setLoading] = useState(false)
   const [isError, setError] = useState(false)
   const [data, setData] = useState({});
+  /*setting the current search term in the search bar for api call */
   const [searchTerm, setSearchTerm] = useState('');
+  
   const [isList, setList] = useState(false)
 
-
+  /* initial call to API */
   useEffect(() => {
     const fetchData = async () => {
       setError(false);
@@ -50,7 +53,7 @@ function App() {
     };
     fetchData()
   }
-
+   /* here we render the card */
   const renderCard = (card, index) => {
     return (
 
@@ -73,7 +76,7 @@ function App() {
       </Card>
     )
   }
-
+   /* Rendering the list */
   const renderList = (list, index) => {
     return (
 
@@ -97,6 +100,7 @@ function App() {
           </InputGroup>
         </Form>
         <ToggleButtonGroup type="radio" name="options" defaultValue={2}>
+         
           <ToggleButton onClick={() => setList(true)} value={1}>list</ToggleButton>
           <ToggleButton onClick={() => setList(false)} value={2}>grid</ToggleButton>
 
@@ -104,7 +108,7 @@ function App() {
       </Navbar>
 
       <div className="grid">
-
+        
         {isList ? <div></div> : data.data && data.data.map(renderCard
 
         )}
