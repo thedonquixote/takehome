@@ -1,14 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Alert, Image, Card, Form, ToggleButtonGroup, Grid, Row, Col, Container, CardGroup, ListGroup, ButtonGroup, Navbar, InputGroup, FormControl, ToggleButton } from 'react-bootstrap'
-import GridList from '@material-ui/core/GridList';
+import { Image, Card, Form, ToggleButtonGroup, ListGroup, Navbar, InputGroup, FormControl, ToggleButton } from 'react-bootstrap'
 import lebron from './assets/lebron-james.jpg';
-//onchanged search func
-//onchanged pagination func
-//grid 
 
 
 
@@ -61,9 +57,6 @@ function App() {
       <Card style={{ width: '18rem' }} key={index} className="box">
         <Image style={{ margin: '15px', alignSelf: 'center', width: '25%' }} src={lebron} roundedCircle />
         <Card.Body>
-          <Card.Title>
-          </Card.Title>
-
           <Card.Text style={{ color: '#000' }}>
             Name : {card.first_name}  {card.last_name}
           </Card.Text>
@@ -84,7 +77,7 @@ function App() {
   const renderList = (list, index) => {
     return (
 
-      <ListGroup.Item disabled>{list.first_name}  {list.last_name}</ListGroup.Item>
+      <ListGroup.Item disabled>Name : {list.first_name}  {list.last_name}  Height : {list.height_feet}'  {list.height_inches}" Position : {list.position}  Team : {list.team.name}</ListGroup.Item>
     )
   }
 
@@ -96,8 +89,10 @@ function App() {
     <div>
 
       <Navbar className="bg-light justify-content-between">
+        
         <Form inline>
           <InputGroup>
+          <Navbar.Brand href="#home">Takehome Alkira</Navbar.Brand>
             <FormControl onChange={searchChange} type="text" placeholder="Search" className=" mr-sm-2" />
           </InputGroup>
         </Form>
